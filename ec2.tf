@@ -35,7 +35,7 @@ resource "aws_instance" "jenkins-master" {
   instance_type               = var.instance-type
   key_name                    = aws_key_pair.master-key.key_name
   associate_public_ip_address = true
-  vpc_security_group_ids      = [aws_security_group.jenkins-sg.id]
+  vpc_security_group_ids      = [aws_security_group.web-sg.id]
   subnet_id                   = aws_subnet.subnet_1.id
 
   tags = {
