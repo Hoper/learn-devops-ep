@@ -56,7 +56,7 @@ resource "aws_instance" "web-master" {
   connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = file("~/.ssh/ec2-key.pub")
+      private_key = file("~/.ssh/ec2-key")
       host        = self.public_ip
   }
 
