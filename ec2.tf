@@ -1,8 +1,8 @@
 #Get Linux AMI ID using SSM Parameter endpoint in us-east-1
 data "aws_ssm_parameter" "linuxAmi" {
   provider = aws.region-master
-#  name     = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
-  name     = "/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id"
+  #  name     = "/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2"
+  name = "/aws/service/canonical/ubuntu/server/20.04/stable/current/amd64/hvm/ebs-gp2/ami-id"
 }
 
 
@@ -39,9 +39,25 @@ resource "aws_instance" "web-master" {
   associate_public_ip_address = true
   vpc_security_group_ids      = [aws_security_group.web-sg.id]
   subnet_id                   = aws_subnet.subnet_1.id
-
   tags = {
     Name = join("_", ["web_master_tf", count.index + 1])
+  }
+  #  provisioner "file" {
+  #  source      = "script.sh"
+  #  destination = "/tmp/script.sh"
+  #}
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo apt update && sudo apt upgrade-y",
+      "sudo apt install -y nmap mc git apache2",
+    ]
+  }
+  connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = file("~/.ssh/ec2-key.pub")
+      host        = self.public_ip
   }
 
   depends_on = [aws_main_route_table_association.set-master-default-rt-assoc]
