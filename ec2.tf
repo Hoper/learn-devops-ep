@@ -47,12 +47,12 @@ resource "aws_instance" "jenkins-master" {
   #inserted inside the resource block for Jenkins EC2 master Terraform
   #Jenkins Master Provisioner:
 
-#  provisioner "local-exec" {
-#    command = <<EOF
-#aws --profile ${var.profile} ec2 wait instance-status-ok --region ${var.region-master} --instance-ids ${self.id}
-#ansible-playbook --extra-vars 'passed_in_hosts=tag_Name_${self.tags.Name}' ansible_templates/jenkins-master-sample.yml
-#EOF
-#  }
+  #  provisioner "local-exec" {
+  #    command = <<EOF
+  #aws --profile ${var.profile} ec2 wait instance-status-ok --region ${var.region-master} --instance-ids ${self.id}
+  #ansible-playbook --extra-vars 'passed_in_hosts=tag_Name_${self.tags.Name}' ansible_templates/jenkins-master-sample.yml
+  #EOF
+  #  }
 }
 
 #Create EC2 in us-west-2

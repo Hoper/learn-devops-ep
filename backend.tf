@@ -9,5 +9,6 @@ terraform {
     region  = "us-east-1"
     profile = "my-awsuser"
     key     = "terraformstatefile"
-    bucket  = "terr-state-ff09f6e5364299e6b409"   # 
-}
+    bucket  = "terr-state-c3ccd94ac149bbd1fcc1" # "terr-state-ff09f6e5364299e6b409"   # 
+  }
+} 
