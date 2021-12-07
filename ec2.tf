@@ -28,9 +28,9 @@ resource "aws_key_pair" "master-key" {
 #}
 
 #Create and bootstrap EC2 in us-east-1
-resource "aws_instance" "jenkins-master" {
+resource "aws_instance" "web-master" {
   provider                    = aws.region-master
-  count                       = var.workers-count
+  count                       = var.web-count
   ami                         = data.aws_ssm_parameter.linuxAmi.value
   instance_type               = var.instance-type
   key_name                    = aws_key_pair.master-key.key_name
