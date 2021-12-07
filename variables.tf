@@ -22,3 +22,8 @@ variable "workers-count" {
   type    = number
   default = 2
 }
+
+variable "web-count" {
+  type    = number
+  default = 2
+}
