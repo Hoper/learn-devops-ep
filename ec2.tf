@@ -43,11 +43,16 @@ resource "aws_instance" "web-master" {
     Name = join("_", ["web_master_tf", count.index + 1])
   }
 
-
 // copy our example script to the server
   provisioner "file" {
-    source      = "install-app.sh"
+    source      = "./scripts/install-app.sh"
     destination = "/tmp/install-app.sh"
+  }
+
+    //copy index.php
+    provisioner "file" {
+    source      = "./web/index.php"
+    destination = "/tmp/index.php"
   }
 
 // change permissions to executable and pipe its output into a new file
@@ -55,6 +60,8 @@ resource "aws_instance" "web-master" {
     inline = [
       "chmod +x /tmp/install-app.sh",
       "/tmp/install-app.sh > /tmp/install.log",
+      "sudo rm /var/www/html/index.html",
+      "sudo cp /tmp/index.php /var/www/html/index.php"
     ]
   }
   connection {
@@ -63,6 +70,8 @@ resource "aws_instance" "web-master" {
       private_key = file("~/.ssh/ec2-key")
       host        = self.public_ip
   }
+ 
+
 
   depends_on = [aws_main_route_table_association.set-master-default-rt-assoc]
   #The code below is ONLY the provisioner block which needs to be
