@@ -49,10 +49,10 @@ resource "aws_instance" "web-master" {
     destination = "/tmp/install-app.sh"
   }
 
-    //copy index.php
-    provisioner "file" {
-    source      = "./web/index.php"
-    destination = "/tmp/index.php"
+  // copy config for site 
+  provisioner "file" {
+    source      = "./web/wp.conf"
+    destination = "/tmp/wp.conf"
   }
 
 // change permissions to executable and pipe its output into a new file
@@ -61,7 +61,6 @@ resource "aws_instance" "web-master" {
       "chmod +x /tmp/install-app.sh",
       "/tmp/install-app.sh > /tmp/install.log",
       "sudo rm /var/www/html/index.html",
-      "sudo cp /tmp/index.php /var/www/html/index.php"
     ]
   }
   connection {
