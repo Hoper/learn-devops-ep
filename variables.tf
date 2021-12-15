@@ -20,12 +20,12 @@ variable "external_ip" {
 
 variable "workers-count" {
   type    = number
-  default = 2
+  default = 1
 }
 
 variable "web-count" {
   type    = number
-  default = 2
+  default = 1
 }
 
 variable "webserver-port" {

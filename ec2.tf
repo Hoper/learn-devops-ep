@@ -42,15 +42,19 @@ resource "aws_instance" "web-master" {
   tags = {
     Name = join("_", ["web_master_tf", count.index + 1])
   }
-  #  provisioner "file" {
-  #  source      = "script.sh"
-  #  destination = "/tmp/script.sh"
-  #}
 
+
+// copy our example script to the server
+  provisioner "file" {
+    source      = "install-app.sh"
+    destination = "/tmp/install-app.sh"
+  }
+
+// change permissions to executable and pipe its output into a new file
   provisioner "remote-exec" {
     inline = [
-      "sudo apt update && sudo apt upgrade-y",
-      "sudo apt install -y nmap mc git apache2",
+      "chmod +x /tmp/install-app.sh",
+      "/tmp/install-app.sh > /tmp/install.log",
     ]
   }
   connection {
