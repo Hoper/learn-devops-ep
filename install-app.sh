@@ -1,5 +1,6 @@
 #!/bin/bash
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-get install nmap apache2 -y
+sudo apt update
+sudo apt upgrade -y
+sudo apt -y install tasksel
+sudo tasksel install lamp-server
 sudo shutdown -r now
