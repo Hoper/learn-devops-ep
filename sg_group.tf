@@ -40,10 +40,10 @@ resource "aws_security_group" "web-sg" {
     cidr_blocks = [var.external_ip]
   }
   ingress {
-    description     = "allow anyone on port 80"
-    from_port       = var.webserver-port
-    to_port         = var.webserver-port
-    protocol        = "tcp"
+    description = "allow anyone on port 80"
+    from_port   = var.webserver-port
+    to_port     = var.webserver-port
+    protocol    = "tcp"
     // allow ALL
     cidr_blocks = [var.external_ip]
     // allow only from LB
