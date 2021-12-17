@@ -2,7 +2,7 @@ Provision LAMP with Terraform script
 
 ## Need
  1. AWS credentials
- ```json
+ ```shell
     [my-awsuser]
          aws_access_key_id = * your ID*
          aws_secret_access_key = * your access key *
@@ -13,14 +13,8 @@ Provision LAMP with Terraform script
  2. Create S3 for remote state terraform
     - run script 
     ``` first_create-s3.sh ``` (you will get name terr-state-%hash%) of S3 bucket for a state file)
- 3. run 
- ```php 
-    terraform plan 
- ```
- 4. run 
- ```shell 
-    terraform apply
- ```
+ 3. run  ``` terraform plan  ```
+ 4. run  ``` terraform apply ```
  you wil get:
 - [X]  data.aws_availability_zones.azs
 - [X]  data.aws_ssm_parameter.linuxAmi
