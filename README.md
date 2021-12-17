@@ -7,8 +7,8 @@ Provision LAMP with Terraform script
     - export AWS_SECRET_ACCESS_KEY=...
  2. Create S3 for remote state terraform
     - run script first_create-s3.sh (you will get name terr-state-%hash%) of S3 bucket for a state file)
- 3. run > terraform plan
- 4. run > terraform apply
+ 3. ```bash run > terraform plan ```
+ 4. ```bash run > terraform apply```
  you wil get:
 - [X]  data.aws_availability_zones.azs
 - [X]  data.aws_ssm_parameter.linuxAmi
@@ -28,6 +28,6 @@ Provision LAMP with Terraform script
 - [X]  aws_vpc.vpc_master
 
 in output you will get DNS URL LoadBalancer    
-(exmpl: Loadbalancer-DNS-URL = "web-lb-2039690464.us-east-1.elb.amazonaws.com" )    
-use this your link for access to setup WP (exmpl:  http://web-lb-2039690464.us-east-1.elb.amazonaws.com)
+***exmpl: Loadbalancer-DNS-URL = "web-lb-2039690464.us-east-1.elb.amazonaws.com" )    (bold italic)***
+use this your link for access to setup WP ***(exmpl:  http://web-lb-2039690464.us-east-1.elb.amazonaws.com)(bold italic)***
 
